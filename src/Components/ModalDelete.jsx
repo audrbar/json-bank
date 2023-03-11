@@ -16,7 +16,7 @@ function ModalDelete() {
 
     return (
         <div className="fixed inset-0 bg-gray-500 bg-opacity-75">
-            <div className="relative inset-0 transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all p-6 sm:my-8 sm:w-full sm:max-w-lg">
+            <div className="relative top-32 left-32 inset-0 transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all p-6 sm:my-8 sm:w-full sm:max-w-lg">
                 <h5 className="text-xl p-2 text-gray-500">Delete Account</h5>
                 <div className="mt-2">
                     <p className="text-md px-2 py-4 text-gray-500">Do you really want to delete that account?</p>
