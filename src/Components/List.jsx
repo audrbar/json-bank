@@ -6,7 +6,7 @@ const List = () => {
     const { list, setDeleteModal, setAddModal, setRemModal } = useContext(Global);
 
     return (
-        <div className="container flex  items-center justify-between flex-col mx-auto p-6 bg-white rounded-xl shadow-lg space-x-4 space-y-4" >
+        <div className="container flex  items-center justify-between flex-col mx-auto p-6 bg-inherit rounded-xl shadow-lg space-x-4 space-y-4" >
             <h1 className="text-xl p-4">Accounts List</h1>
             <>
                 {
@@ -23,9 +23,9 @@ const List = () => {
                             </li>
                         </ul>
                         <div className="flex flex-row justify-between p-6">
-                            <button type="button" className="bg-blue-500 hover:bg-blue-700 text-white font-bold p-2 m-1 rounded">ADD</button>
-                            <button type="button" className="bg-blue-500 hover:bg-blue-700 text-white font-bold p-2 m-1 rounded">REM</button>
-                            <button type="button" className="bg-red-500 hover:bg-red-700 text-white font-bold p-2 m-1 rounded">DELETE</button>
+                            <button type="button" className="bg-blue-500 hover:bg-blue-700 text-white font-bold p-2 m-1 rounded" onClick={() => setAddModal(n)}>ADD</button>
+                            <button type="button" className="bg-blue-500 hover:bg-blue-700 text-white font-bold p-2 m-1 rounded" onClick={() => setRemModal(n)}>REM</button>
+                            <button type="button" className="bg-red-500 hover:bg-red-700 text-white font-bold p-2 m-1 rounded" onClick={() => setDeleteModal(n)}>DELETE</button>
                         </div>
                     </div>))
                 }

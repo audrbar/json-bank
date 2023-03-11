@@ -27,7 +27,7 @@ function ModalAdd() {
     }
 
     return (
-        <div className="modal cust-modal">
+        <div className="fixed t-5 l-5 border bg-stone-400 w-64">
             <div className="modal-dialog modal-dialog-centered">
                 <div className="modal-content">
                     <div className="modal-header">

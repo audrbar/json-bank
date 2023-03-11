@@ -18,7 +18,7 @@ const CreateAccount = () => {
     }
 
     return (
-        <div className="container mx-auto flex flex-col mb-6 md:flex-row items-center justify-between p-6 bg-white rounded-xl shadow-lg space-x-4 space-y-4">
+        <div className="container mx-auto flex flex-col mb-6 md:flex-row items-center justify-between p-6 bg-inherit rounded-xl shadow-lg space-x-4 space-y-4">
             <h1 className="pt-2 flex-col md:flex-row text-xl hover:text-darkGrayishBlue">Create an account</h1>
             <div className="flex flex-col md:flex-row md:space-y-6 items-center justify-between">
                 <form className='flex flex-col md:flex-row md:space-x-6 '>
