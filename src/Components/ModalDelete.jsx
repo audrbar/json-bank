@@ -23,7 +23,7 @@ function ModalDelete() {
                         <button type="button" className="btn-close" onClick={() => setDeleteModal(null)}></button>
                     </div>
                     <div className="modal-body">
-                        <p>Do you really want to delete that number.</p>
+                        <p>Do you really want to delete that account.</p>
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" onClick={() => setDeleteModal(null)}>Cancel</button>

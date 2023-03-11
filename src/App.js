@@ -12,7 +12,7 @@ import Messages from './Components/Messages';
 function App() {
   return (
     <GlobalProvider>
-      <div className='container'>
+      <div className='container mx-auto'>
         <Navbar />
         <CreateAccount />
         <FilterAccounts />

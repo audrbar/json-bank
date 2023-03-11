@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-const URL = 'http://localhost:3003/numbers';
+const URL = 'http://localhost:3003/accounts';
 
 
 export const useWrite = _ => {
@@ -14,7 +14,7 @@ export const useWrite = _ => {
         if (null === edit) {
             return;
         }
-        axios.put(URL + '/' + edit.action + '/' + edit.id, { number: edit.number })
+        axios.put(URL + '/' + edit.action + '/' + edit.id, { account: edit.account })
             .then(res => setResponse(res.data));
 
     }, [edit]);

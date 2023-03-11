@@ -4,18 +4,18 @@ import { Global } from './GlobalContext';
 function ModalAdd() {
 
     const { addModal, setAddModal, setEdit } = useContext(Global);
-    const [number, setNumber] = useState(0);
+    const [account, setAccount] = useState(0);
 
     useEffect(() => {
         if (null === addModal) {
             return;
         }
-        setNumber(0);
+        setAccount(0);
     }, [addModal]);
 
     const add = _ => {
         setEdit({
-            number: parseInt(number),
+            account: parseInt(account),
             id: addModal.id,
             action: 'add'
         });
@@ -31,14 +31,14 @@ function ModalAdd() {
             <div className="modal-dialog modal-dialog-centered">
                 <div className="modal-content">
                     <div className="modal-header">
-                        <h5 className="modal-title">Add to number {addModal.number}</h5>
+                        <h5 className="modal-title">Add to account {addModal.account}</h5>
                         <button type="button" className="btn-close" onClick={() => setAddModal(null)}></button>
                     </div>
                     <div className="modal-body">
                         <div className="mb-3">
-                            <label className="form-label">Slide to add {number}</label>
-                            <input type="range" min="0" max={99 - addModal.number} className="form-range"
-                                value={number} onChange={e => setNumber(e.target.value)} />
+                            <label className="form-label">Slide to add {account}</label>
+                            <input type="range" min="0" max={99 - addModal.account} className="form-range"
+                                value={account} onChange={e => setAccount(e.target.value)} />
                         </div>
                     </div>
                     <div className="modal-footer">

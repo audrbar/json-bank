@@ -4,18 +4,18 @@ import { Global } from './GlobalContext';
 function ModalRemove() {
 
     const { remModal, setRemModal, setEdit } = useContext(Global);
-    const [number, setNumber] = useState(0);
+    const [account, setAccount] = useState(0);
 
     useEffect(() => {
         if (null === remModal) {
             return;
         }
-        setNumber(0);
+        setAccount(0);
     }, [remModal]);
 
     const rem = _ => {
         setEdit({
-            number: parseInt(number),
+            account: parseInt(account),
             id: remModal.id,
             action: 'rem'
         });
@@ -31,14 +31,14 @@ function ModalRemove() {
             <div className="modal-dialog modal-dialog-centered">
                 <div className="modal-content">
                     <div className="modal-header">
-                        <h5 className="modal-title">Add to number {remModal.number}</h5>
+                        <h5 className="modal-title">Add to account {remModal.account}</h5>
                         <button type="button" className="btn-close" onClick={() => setRemModal(null)}></button>
                     </div>
                     <div className="modal-body">
                         <div className="mb-3">
-                            <label className="form-label">Slide to add {number}</label>
-                            <input type="range" min="0" max={remModal.number - 1} className="form-range"
-                                value={number} onChange={e => setNumber(e.target.value)} />
+                            <label className="form-label">Slide to add {account}</label>
+                            <input type="range" min="0" max={remModal.account - 1} className="form-range"
+                                value={account} onChange={e => setAccount(e.target.value)} />
                         </div>
                     </div>
                     <div className="modal-footer">
