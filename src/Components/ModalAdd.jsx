@@ -27,23 +27,15 @@ function ModalAdd() {
     }
 
     return (
-        <div className="fixed t-5 l-5 border bg-stone-400 w-64">
-            <div className="modal-dialog modal-dialog-centered">
+        <div className="fixed inset-0 bg-gray-500 bg-opacity-75">
+            <div className="relative top-32 left-16 inset-0 transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all p-6 sm:my-8 sm:w-full sm:max-w-lg">
                 <div className="modal-content">
-                    <div className="modal-header">
-                        <h5 className="modal-title">Add to account {addModal.account}</h5>
-                        <button type="button" className="btn-close" onClick={() => setAddModal(null)}></button>
-                    </div>
+                    <p className="text-xl p-2 text-gray-500">Add to account</p>
                     <div className="modal-body">
-                        <div className="mb-3">
-                            <label className="form-label">Slide to add {account}</label>
-                            <input type="range" min="0" max={99 - addModal.account} className="form-range"
-                                value={account} onChange={e => setAccount(e.target.value)} />
-                        </div>
                     </div>
-                    <div className="modal-footer">
-                        <button type="button" className="btn btn-secondary" onClick={() => setAddModal(null)}>Cancel</button>
-                        <button type="button" className="btn btn-primary" onClick={add}>ADD</button>
+                    <div className="flex justify-end">
+                        <button type="button" className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto" onClick={() => setAddModal(null)}>Cancel</button>
+                        <button type="button" className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto" onClick={add}>ADD</button>
                     </div>
                 </div>
             </div>

@@ -12,7 +12,7 @@ import Messages from './Components/Messages';
 function App() {
   return (
     <GlobalProvider>
-      <div className='container mx-auto bg-gradient-to-r from-cyan-500 to-blue-500'>
+      <div className='container mx-auto'>
         <Navbar />
         <CreateAccount />
         <FilterAccounts />
