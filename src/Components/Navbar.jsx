@@ -1,15 +1,20 @@
-import React from 'react';
+import { useContext } from 'react';
+import { Global } from './GlobalContext';
 
 const Navbar = () => {
+
+    const { list, response } = useContext(Global);
+
+
     return (
-        <nav className="relative container mx-auto p-6 mb-6  bg-inherit rounded-xl shadow-lg space-x-4 space-y-4">
-            <div className="flex flex-col md:flex-row items-center justify-between">
-                <h1 className="pt-2 text-4xl cursor-pointer hover:text-darkGrayishBlue p-2">Kija International</h1>
-                <div className="flex flex-col md:flex-row md:space-x-6">
-                    <h3 className="pt-2">Cash Total: $50 000</h3>
-                    <h3 className="pt-2">Clients Total: 25</h3>
-                </div>
-            </div>
+        <nav className="container mx-auto pt-6 pb-6 flex flex-col items-center md:justify-between md:flex-row">
+            <h1 className="text-4xl text-center cursor-pointer hover:text-darkGrayishBlue">Kija International</h1>
+            {/* <div className="flex flex-col items-center md:flex-row md:space-x-6">
+                <h3 className="pt-2">Cash Total: {" "}
+                    {list.map((item) => item.amount).reduce((acc, curr) => acc + curr, 0)}{" " + "$"}
+                </h3>
+                <h3 className="pt-2">Clients Total: {list.length}</h3>
+            </div> */}
         </nav>
     )
 }

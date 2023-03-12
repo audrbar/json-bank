@@ -2,19 +2,21 @@ import React from 'react';
 
 const SearchFor = () => {
     return (
-        <div className="container mx-auto flex flex-col md:flex-row items-center justify-between mb-6 p-6 bg-inherit rounded-xl shadow-lg space-x-4 space-y-4" >
-            <h1 className="pt-2 flex-col md:flex-row text-xl hover:text-darkGrayishBlue">Filter an account</h1>
-            <div>
-                <input type="checkbox" id="all" name="accounts" value="all" />
-                <label for="coding">All Accounts</label>
-            </div>
-            <div>
-                <input type="checkbox" id="active" name="accounts" value="active" />
-                <label for="music">Active Only</label>
-            </div>
-            <div>
-                <input type="checkbox" id="empty" name="accounts" value="empty" />
-                <label for="music">Empty Only</label>
+        <div className="container mx-auto flex flex-col items-center justify-between p-4 mb-2 rounded-xl shadow-md md:flex-row" >
+            <h1 className="text-xl mb-3 md:mb-0">Filter an accounts</h1>
+            <div className='flex gap-x-6'>
+                <div>
+                    <input type="radio" id="all" name="accounts" className="peer hidden" value="all" checked />
+                    <label for="coding" className="block cursor-pointer select-none rounded-xl py-1 px-6 text-center peer-checked:bg-blue-500 peer-checked:font-bold peer-checked:text-white">All</label>
+                </div>
+                <div>
+                    <input type="radio" id="active" name="accounts" className="peer hidden" value="active" />
+                    <label for="music" className="block cursor-pointer select-none rounded-xl py-1 px-6 text-center peer-checked:bg-blue-500 peer-checked:font-bold peer-checked:text-white">Active</label>
+                </div>
+                <div>
+                    <input type="radio" id="empty" name="accounts" className="peer hidden" value="empty" />
+                    <label for="music" className="block cursor-pointer select-none rounded-xl py-1 px-6 text-center peer-checked:bg-blue-500 peer-checked:font-bold peer-checked:text-white">Empty</label>
+                </div>
             </div>
         </div>
     )
