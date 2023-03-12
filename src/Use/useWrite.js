@@ -14,7 +14,7 @@ export const useWrite = _ => {
         if (null === edit) {
             return;
         }
-        axios.put(URL + '/' + edit.action + '/' + edit.id, { account: edit.account })
+        axios.put(URL + '/' + edit.action + '/' + edit.id, { amount: edit.amount })
             .then(res => setResponse(res.data));
 
     }, [edit]);

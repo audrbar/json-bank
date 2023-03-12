@@ -19,7 +19,7 @@ const List = () => {
                                 <h2>Name: {n.name}</h2>
                             </li>
                             <li className="p-4">
-                                <h2>Balance $: 888</h2>
+                                <h2>Balance $: {n.amount}</h2>
                             </li>
                         </ul>
                         <div className="flex flex-row justify-between p-6">

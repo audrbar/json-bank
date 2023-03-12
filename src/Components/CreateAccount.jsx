@@ -1,20 +1,22 @@
-import { useContext } from 'react';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Global } from './GlobalContext';
 
 const CreateAccount = () => {
 
     const [surname, setSurname] = useState('');
     const [name, setName] = useState('');
+    const [amount, setAmount] = useState(0);
     const { setCreate } = useContext(Global);
 
     const create = _ => {
         setCreate({
             surname,
             name,
+            amount: parseInt(amount),
         });
         setSurname('');
         setName('');
+        setAmount(0);
     }
 
     return (

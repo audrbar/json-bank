@@ -91,13 +91,14 @@ app.post('/accounts', (req, res) => {
     const data = {
         name: req.body.name,
         surname: req.body.surname,
+        amount: req.body.amount,
         id
     };
     allData.push(data);
     allData = JSON.stringify(allData);
     fs.writeFileSync('./data/accounts.json', allData, 'utf8');
     res.json({
-        message: { text: 'New account is created', 'type': 'success' }
+        message: { text: 'New account is created', 'type': 'ok' }
     });
 });
 
@@ -107,7 +108,7 @@ app.delete('/accounts/:id', (req, res) => {
     let deletedData = allData.filter(d => req.params.id !== d.id);
     deletedData = JSON.stringify(deletedData);
     fs.writeFileSync('./data/accounts.json', deletedData, 'utf8');
-    res.json({ message: { text: 'The account was deleted', 'type': 'danger' } });
+    res.json({ message: { text: 'The account was deleted', 'type': 'error' } });
 });
 
 
@@ -115,12 +116,12 @@ app.put('/accounts/:action/:id', (req, res) => {
     let allData = fs.readFileSync('./data/accounts.json', 'utf8');
     allData = JSON.parse(allData);
     let editedData;
-    if (req.params.action == 'add') {
+    if (req.params.action === 'add') {
         editedData = allData
-            .map(d => req.params.id === d.id ? { ...d, account: d.account + req.body.account } : { ...d });
-    } else if (req.params.action == 'rem') {
+            .map(d => req.params.id === d.id ? { ...d, amount: d.amount + req.body.amount } : { ...d });
+    } else if (req.params.action === 'rem') {
         editedData = allData
-            .map(d => req.params.id === d.id ? { ...d, account: d.account - req.body.account } : { ...d });
+            .map(d => req.params.id === d.id ? { ...d, amount: d.amount - req.body.amount } : { ...d });
     }
     editedData = JSON.stringify(editedData);
     fs.writeFileSync('./data/accounts.json', editedData, 'utf8');

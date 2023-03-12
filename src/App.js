@@ -10,6 +10,7 @@ import ModalRemove from './Components/ModalRemove';
 import Messages from './Components/Messages';
 
 function App() {
+
   return (
     <GlobalProvider>
       <div className='container mx-auto'>
