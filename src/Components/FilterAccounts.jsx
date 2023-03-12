@@ -5,7 +5,7 @@ const SearchFor = () => {
 
     const { list } = useContext(Global);
     const [emty, setEmpty] = useState(true);
-    const [full, setFull] = use
+    const [full, setFull] = useState(true);
 
     // const showEmpty = list.filter(item => item.amount <= 0);
     // console.log(showEmpty);
