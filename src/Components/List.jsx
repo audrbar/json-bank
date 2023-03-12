@@ -16,7 +16,7 @@ const List = () => {
                             <h2><span className="text-slate-400">Surname: </span>{n.surname}</h2>
                         </li>
                         <li className="p-2">
-                            <h2 text-slate-400><span className="text-slate-400">Name: </span>{n.name}</h2>
+                            <h2><span className="text-slate-400">Name: </span>{n.name}</h2>
                         </li>
                         <li className="p-2">
                             <h2><span className="text-slate-400">Balance: </span>{n.amount}<span className="text-slate-400"> $</span></h2>

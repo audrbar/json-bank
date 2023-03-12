@@ -98,7 +98,7 @@ app.post('/accounts', (req, res) => {
     allData = JSON.stringify(allData);
     fs.writeFileSync('./data/accounts.json', allData, 'utf8');
     res.json({
-        message: { text: 'New account is created', 'type': 'ok' }
+        message: { text: 'New account is created', 'type': 'success' }
     });
 });
 
@@ -108,7 +108,7 @@ app.delete('/accounts/:id', (req, res) => {
     let deletedData = allData.filter(d => req.params.id !== d.id);
     deletedData = JSON.stringify(deletedData);
     fs.writeFileSync('./data/accounts.json', deletedData, 'utf8');
-    res.json({ message: { text: 'The account was deleted', 'type': 'error' } });
+    res.json({ message: { text: 'The account was deleted', 'type': 'danger' } });
 });
 
 
