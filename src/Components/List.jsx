@@ -10,7 +10,7 @@ const List = () => {
         <div className="container mx-auto flex flex-col items-center justify-between p-4 rounded-xl shadow-md" >
             <h1 className="text-xl">Accounts List</h1>
             {
-                list?.map(n => (<div key={n.id} className="flex flex-col items-center justify-between w-full shadow-md rounded-x md:flex-row">
+                list === null ? <p>Loading...</p> : list?.map(n => (<div key={n.id} className="flex flex-col items-center justify-between w-full shadow-md rounded-x md:flex-row">
                     <ul className="flex flex-row items-center justify-between w-full p-1">
                         <li className="p-2">
                             <h2><span className="text-slate-400">Surname: </span>{n.surname}</h2>

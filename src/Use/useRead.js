@@ -10,7 +10,7 @@ export const useRead = _ => {
 
     useEffect(() => {
         axios.get(URL)
-            .then(res => setList(res.data));
+            .then(res => setList(res.data.sort((a, b) => a.surname.localeCompare(b.surname))));
     }, [update]);
 
 
