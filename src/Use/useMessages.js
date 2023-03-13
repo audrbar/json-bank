@@ -14,7 +14,7 @@ export const useMessages = init => {
         setMessages(m => [...m, { ...message, id: uuid }]);
         setTimeout(() => {
             setMessages(m => m.filter(m => uuid !== m.id));
-        }, 2500);
+        }, 2000);
 
     }, [message]);
 
