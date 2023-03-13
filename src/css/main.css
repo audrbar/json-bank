@@ -650,6 +650,10 @@ input[type='number']::-webkit-outer-spin-button,
   width: 100%;
 }
 
+.max-w-screen-lg {
+  max-width: 976px;
+}
+
 .max-w-sm {
   max-width: 24rem;
 }
@@ -850,10 +854,6 @@ input[type='number']::-webkit-outer-spin-button,
 
 .font-semibold {
   font-weight: 600;
-}
-
-.lowercase {
-  text-transform: lowercase;
 }
 
 .italic {
