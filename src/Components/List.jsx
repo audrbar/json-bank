@@ -1,14 +1,34 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { Global } from './GlobalContext';
 import Footer from './Footer';
+import FilterButton from './FilterButton';
 
+const FILTER_MAP = {
+  All: () => true,
+  Active: (list) => list.amount > 0,
+  Empty: (list) => list.amount === 0
+};
+
+const FILTER_NAMES = Object.keys(FILTER_MAP);
+console.log(FILTER_NAMES);
 const List = () => {
 
     const { list, setDeleteModal, setAddModal, setRemModal } = useContext(Global);
+    const [filter, setFilter] = useState([]);
+    const [checked, setChecked] = useState('');
+
+    const filterList = FILTER_NAMES.map((fname) => (
+        <FilterButton
+        key={fname}
+        fname={fname}
+        setChecked={fname === filter}
+        setFilter={setFilter}
+        />));
 
     return (
         <div className="container mx-auto flex flex-col items-center justify-between p-4 rounded-xl shadow-md" >
             <h1 className="text-xl">Accounts List</h1>
+            <div flex flex-row>{filterList}</div>
             {
                 list === null ? <p className="text-xl">Loading...</p> : list?.map(n => (<div key={n.id} className="flex flex-col items-center justify-between w-full shadow-md rounded-x md:flex-row">
                     <ul className="flex flex-row items-center justify-between w-full p-1">
