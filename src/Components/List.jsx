@@ -1,36 +1,48 @@
 import { useContext, useState } from 'react';
 import { Global } from './GlobalContext';
 import Footer from './Footer';
-import FilterButton from './FilterButton';
 
-const FILTER_MAP = {
-  All: () => true,
-  Active: (list) => list.amount > 0,
-  Empty: (list) => list.amount === 0
-};
 
-const FILTER_NAMES = Object.keys(FILTER_MAP);
-console.log(FILTER_NAMES);
+
 const List = () => {
 
     const { list, setDeleteModal, setAddModal, setRemModal } = useContext(Global);
-    const [filter, setFilter] = useState([]);
-    const [checked, setChecked] = useState('');
+    const [selectedCategory, setSelectedCategory] = useState('');
 
-    const filterList = FILTER_NAMES.map((fname) => (
-        <FilterButton
-        key={fname}
-        fname={fname}
-        setChecked={fname === filter}
-        setFilter={setFilter}
-        />));
-
+    function handleCategoryChange(e) {
+        setSelectedCategory(e.target.value);
+    }
+    console.log(selectedCategory);
     return (
         <div className="container mx-auto flex flex-col items-center justify-between p-4 rounded-xl shadow-md" >
-            <h1 className="text-xl">Accounts List</h1>
-            <div flex flex-row>{filterList}</div>
+            <div className="flex flex-row w-full items-center justify-between">
+                <div>
+                    <p className="text-xl">Accounts List</p>
+                </div>
+                <div>
+                    <select
+                        className="px-6 py-2 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-md"
+                        name="category list"
+                        type="radio"
+                        id="category list"
+                        onChange={handleCategoryChange}
+                    >
+                        <option value="">All</option>
+                        <option value="Active">Active</option>
+                        <option value="Empty">Empty</option>
+                    </select>
+                </div>
+            </div>
             {
-                list === null ? <p className="text-xl">Loading...</p> : list?.map(n => (<div key={n.id} className="flex flex-col items-center justify-between w-full shadow-md rounded-x md:flex-row">
+                list?.filter(acc => {
+                    if (selectedCategory === 'Active') {
+                        return acc.amount > 0
+                    }
+                    if (selectedCategory === 'Empty') {
+                        return acc.amount <= 0
+                    }
+                    return true;
+                }).map(n => (<div key={n.id} className="flex flex-col items-center justify-between w-full shadow-md rounded-x md:flex-row">
                     <ul className="flex flex-row items-center justify-between w-full p-1">
                         <li className="p-2">
                             <h2><span className="text-slate-400">Surname: </span>{n.surname}</h2>
