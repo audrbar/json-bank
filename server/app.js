@@ -50,7 +50,7 @@ app.delete('/accounts/:id', (req, res) => {
         fs.writeFileSync('./data/accounts.json', deletedData, 'utf8');
         res.json({ message: { text: 'The account was deleted', 'type': 'danger' } });
     } else {
-        res.json({ message: { text: 'The account can not be deleted', 'type': 'danger' } });
+        res.json({ message: { text: 'The account can not be deleted. Just spend all your money.', 'type': 'danger' } });
     }
 });
 
