@@ -2,7 +2,6 @@ import './css/main.css';
 import { GlobalProvider } from './Components/GlobalContext';
 import Navbar from './Components/Navbar';
 import List from './Components/List';
-import FilterAccounts from './Components/FilterAccounts';
 import CreateAccount from './Components/CreateAccount';
 import ModalDelete from './Components/ModalDelete';
 import ModalAdd from './Components/ModalAdd';
@@ -16,7 +15,6 @@ function App() {
       <div className='container mx-auto max-w-screen-lg'>
         <Navbar />
         <CreateAccount />
-        <FilterAccounts />
         <List />
       </div>
       <ModalDelete />
