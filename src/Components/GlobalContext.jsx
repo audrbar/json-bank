@@ -16,7 +16,6 @@ export const GlobalProvider = ({ children }) => {
     const [route, setRoute] = useState('home');
     const [logged, setLogged] = useState(null);
     const [authName, setAuthName] = useState(null);
-    const [authRole, setAuthRole] = useState(null);
 
     useEffect(() => {
         setUpdate(Date.now());
@@ -29,7 +28,6 @@ export const GlobalProvider = ({ children }) => {
         axios.post('http://localhost:3003/logout', {}, { withCredentials: true })
             .then(res => {
                 setLogged(false);
-                setAuthName(false);
             });
     }
 
@@ -48,7 +46,7 @@ export const GlobalProvider = ({ children }) => {
             setEdit,
             messages,
             route, setRoute,
-            authName, setAuthName, logOut, logged, setLogged, authRole, setAuthRole,
+            authName, setAuthName, logOut, logged, setLogged
         }}>
             {children}
         </Global.Provider>

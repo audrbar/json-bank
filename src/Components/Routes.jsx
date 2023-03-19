@@ -10,8 +10,8 @@ function Routes() {
     const { route } = useContext(Global);
 
     switch (route) {
-        case 'home': return <Auth roles={''}><Home /></Auth >
-        case 'accounts': return <Auth roles={'client,manager,admin'}><Accounts /></Auth>
+        case 'home': return <Home />
+        case 'accounts': return <Auth><Accounts /></Auth>
         case 'login': return <Login />
         default: return null
     }

@@ -3,7 +3,7 @@ import { Global } from './GlobalContext';
 
 const Navbar = () => {
 
-    const { route, setRoute, authName, logOut, authRole } = useContext(Global);
+    const { route, setRoute, authName, logOut } = useContext(Global);
 
 
     return (
@@ -16,14 +16,11 @@ const Navbar = () => {
                             'nav-link' + (route === 'home' ? ' active' : '')
                         }>Home</span>
                     </li>
-                    {
-                        ['manager', 'client'].includes(authRole) ?
-                            <li className="nav-item cursor-pointer">
-                                <span onClick={_ => setRoute('accounts')} className={
-                                    'nav-link' + (route === 'accounts' ? ' active' : '')
-                                }>Accounts</span>
-                            </li> : null
-                    }
+                    <li className="nav-item cursor-pointer">
+                        <span onClick={_ => setRoute('accounts')} className={
+                            'nav-link' + (route === 'accounts' ? ' active' : '')
+                        }>Accounts</span>
+                    </li>
                 </ul>
             </div>
             {
