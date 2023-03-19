@@ -1,12 +1,19 @@
 const express = require('express');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
 const fs = require('fs');
 const { v4: uuidv4 } = require('uuid');
+const md5 = require('md5');
 
 const app = express();
 const port = 3003;
 
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:3000',
+    credentials: true
+}));
+
+app.use(cookieParser());
 
 app.use(
     express.urlencoded({
@@ -14,6 +21,33 @@ app.use(
     })
 );
 app.use(express.json());
+
+// Login
+app.post('/login', (req, res) => {
+    const users = JSON.parse(fs.readFileSync('./data/users.json', 'utf8'));
+    const name = req.body.name;
+    const psw = md5(req.body.psw);
+    console.log(name, psw);
+    const user = users.find(u => u.name === name && u.psw === psw);
+    console.log(user);
+    if (user) {
+        const sessionId = md5(uuidv4()); // Turi buti normali kroptografija!!!
+        user.session = sessionId;
+        console.log(sessionId);
+        fs.writeFileSync('./data/users.json', JSON.stringify(users), 'utf8');
+        res.cookie('kijaSession', sessionId);
+        console.log(res.cookie);
+        res.json({
+            status: 'ok',
+            name: user.name
+        });
+        console.log(user);
+    } else {
+        res.json({
+            status: 'error',
+        });
+    }
+});
 
 // API
 app.get('/accounts', (req, res) => {

@@ -7,6 +7,8 @@ import ModalDelete from './Components/ModalDelete';
 import ModalAdd from './Components/ModalAdd';
 import ModalRemove from './Components/ModalRemove';
 import Messages from './Components/Messages';
+import Login from './Components/Login';
+import Totals from './Components/Totals';
 
 function App() {
 
@@ -14,8 +16,11 @@ function App() {
     <GlobalProvider>
       <div className='container mx-auto max-w-screen-lg'>
         <Navbar />
+        <Login />
+        <Totals />
         <CreateAccount />
         <List />
+
       </div>
       <ModalDelete />
       <ModalAdd />
