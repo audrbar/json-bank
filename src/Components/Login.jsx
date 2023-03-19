@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from 'axios';
+import { Global } from "./GlobalContext";
 
 function Login() {
 
@@ -7,6 +8,18 @@ function Login() {
     const [error, setError] = useState(null);
     const [name, setName] = useState('');
     const [psw, setPsw] = useState('');
+
+    const { setLogged, setAuthName } = useContext(Global);
+
+    useEffect(() => {
+        axios.get('http://localhost:3003/login', { withCredentials: true })
+            .then(res => {
+                console.log(res.data);
+                if (res.data.status === 'ok') {
+                    setUserName(res.data.name);
+                }
+            })
+    }, []);
 
     const login = e => {
         e.preventDefault();
@@ -18,8 +31,11 @@ function Login() {
                     setName('');
                     setPsw('');
                     setError(null);
+                    setLogged(true);
+                    setAuthName(true);
                 } else {
                     setError(true);
+                    setUserName(null);
                 }
             });
     }

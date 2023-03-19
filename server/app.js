@@ -22,26 +22,65 @@ app.use(
 );
 app.use(express.json());
 
+// Auth
+
+const doAuth = function (req, res, next) {
+    if (req.url.indexOf('/accounts') === 0) {
+        const users = JSON.parse(fs.readFileSync('./data/users.json', 'utf8'));
+        const user = req.cookies.kijaSession ?
+            users.find(u => u.session === req.cookies.kijalSession) :
+            null;
+        console.log(req.cookies)
+        if (user) {
+            next()
+        } else {
+            res.status(401).json({});
+        }
+    } else {
+        next();
+    }
+}
+
+app.use(doAuth);
+
 // Login
 app.post('/login', (req, res) => {
     const users = JSON.parse(fs.readFileSync('./data/users.json', 'utf8'));
     const name = req.body.name;
     const psw = md5(req.body.psw);
-    console.log(name, psw);
     const user = users.find(u => u.name === name && u.psw === psw);
-    console.log(user);
     if (user) {
         const sessionId = md5(uuidv4()); // Turi buti normali kroptografija!!!
         user.session = sessionId;
-        console.log(sessionId);
         fs.writeFileSync('./data/users.json', JSON.stringify(users), 'utf8');
         res.cookie('kijaSession', sessionId);
-        console.log(res.cookie);
         res.json({
             status: 'ok',
             name: user.name
         });
-        console.log(user);
+    } else {
+        res.json({
+            status: 'error',
+        });
+    }
+});
+
+app.post('/logout', (req, res) => {
+    res.cookie('kijaSession', '***');
+    res.json({
+        status: 'logout',
+    });
+});
+
+app.get('/login', (req, res) => {
+    const users = JSON.parse(fs.readFileSync('./data/users.json', 'utf8'));
+    const user = req.cookies.kijaSession ? users.find(u => u.session === req.cookies.kijaSession) : null;
+    if (user) {
+        res.json({
+            status: 'ok',
+            name: user.name,
+            role: user.role
+        });
     } else {
         res.json({
             status: 'error',

@@ -1,6 +1,7 @@
-import { createContext, useEffect } from "react";
+import { createContext, useEffect, useState } from "react";
 import { useMessages } from "../Use/useMessages";
 import { useModal } from "../Use/useModal";
+import axios from 'axios';
 import { useRead } from "../Use/useRead";
 import { useWrite } from "../Use/useWrite";
 
@@ -12,6 +13,10 @@ export const GlobalProvider = ({ children }) => {
     const [list, setUpdate] = useRead();
     const [deleteModal, setDeleteModal, addModal, setAddModal, remModal, setRemModal] = useModal();
     const [messages, setMessage] = useMessages([]);
+    const [route, setRoute] = useState('home');
+    const [logged, setLogged] = useState(null);
+    const [authName, setAuthName] = useState(null);
+    const [authRole, setAuthRole] = useState(null);
 
     useEffect(() => {
         setUpdate(Date.now());
@@ -20,6 +25,20 @@ export const GlobalProvider = ({ children }) => {
         }
     }, [response, setMessage, setUpdate]);
 
+    const logOut = _ => {
+        axios.post('http://localhost:3003/logout', {}, { withCredentials: true })
+            .then(res => {
+                setLogged(false);
+                setAuthName(false);
+            });
+    }
+
+    useEffect(() => {
+
+        setLogged(null);
+
+    }, [route])
+
     return (
         <Global.Provider value={{
             setDelete,
@@ -27,7 +46,9 @@ export const GlobalProvider = ({ children }) => {
             list,
             deleteModal, setDeleteModal, addModal, setAddModal, remModal, setRemModal,
             setEdit,
-            messages
+            messages,
+            route, setRoute,
+            authName, setAuthName, logOut, logged, setLogged, authRole, setAuthRole,
         }}>
             {children}
         </Global.Provider>

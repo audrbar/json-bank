@@ -7,8 +7,9 @@ const Totals = () => {
 
 
     return (
-        <nav className="container mx-auto flex flex-col items-center justify-between p-4 rounded-xl shadow-md mb-2 md:flex-row">
-            <p className="text-xl mb-3 md:mb-0">Kija International Totals</p>
+        <nav className="container mx-auto flex flex-col gap-y-12 items-center justify-between p-6 rounded-xl shadow-md mb-2">
+            <h1 className="text-3xl text-center p-4">We are number ONE!</h1>
+            <h1 className="text-4xl text-center p-4 cursor-pointer hover:text-darkGrayishBlue">Our clients trust us:</h1>
             <div className="flex flex-col items-center justify-between gap-y-2 md:flex-row md:gap-x-4">
                 <p className="pt-2">Cash Total: {" "}
                     {list?.map((item) => item.amount).reduce((acc, curr) => acc + curr, 0)}{" $"}
