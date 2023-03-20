@@ -22,27 +22,6 @@ app.use(
 );
 app.use(express.json());
 
-// Auth
-
-const doAuth = function (req, res, next) {
-    if (req.url.indexOf('/accounts') === 0) {
-        const users = JSON.parse(fs.readFileSync('./data/users.json', 'utf8'));
-        const user = req.cookies.kijaSession ?
-            users.find(u => u.session === req.cookies.kijalSession) :
-            null;
-        console.log(req.cookies)
-        if (user) {
-            next()
-        } else {
-            res.status(401).json({});
-        }
-    } else {
-        next();
-    }
-}
-
-app.use(doAuth);
-
 // Login
 app.post('/login', (req, res) => {
     const users = JSON.parse(fs.readFileSync('./data/users.json', 'utf8'));
@@ -66,7 +45,7 @@ app.post('/login', (req, res) => {
 });
 
 app.post('/logout', (req, res) => {
-    res.cookie('kijaSession', '***');
+    res.clearCookie('kijaSession');
     res.json({
         status: 'logout',
     });
@@ -100,7 +79,7 @@ app.post('/accounts', (req, res) => {
     allData = JSON.parse(allData);
     const id = uuidv4();
     const data = {
-        name: req.body.name,
+        firstname: req.body.firstname,
         surname: req.body.surname,
         amount: req.body.amount,
         id

@@ -12,7 +12,6 @@ const List = () => {
     function handleCategoryChange(e) {
         setSelectedCategory(e.target.value);
     }
-    console.log(selectedCategory);
     return (
         <div className="container mx-auto flex flex-col items-center justify-between p-4 rounded-xl shadow-md" >
             <div className="flex flex-row w-full items-center justify-between">
@@ -48,7 +47,7 @@ const List = () => {
                             <h2><span className="text-slate-400">Surname: </span>{n.surname}</h2>
                         </li>
                         <li className="p-2">
-                            <h2><span className="text-slate-400">Name: </span>{n.name}</h2>
+                            <h2><span className="text-slate-400">Name: </span>{n.firstname}</h2>
                         </li>
                         <li className="p-2">
                             <h2><span className="text-slate-400">Balance: </span>{n.amount}<span className="text-slate-400"> $</span></h2>

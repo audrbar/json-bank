@@ -22,20 +22,23 @@ export const GlobalProvider = ({ children }) => {
         if (null !== response) {
             setMessage({ text: response.message.text, type: response.message.type });
         }
-    }, [response, setMessage, setUpdate]);
+    }, [response, setMessage, setUpdate, setCreate]);
 
-    const logOut = _ => {
+    const logOut = e => {
+        e.preventDefault();
         axios.post('http://localhost:3003/logout', {}, { withCredentials: true })
             .then(res => {
                 setLogged(false);
+                setAuthName(false);
+                setRoute('home');
             });
     }
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        setLogged(null);
+    //     setLogged(null);
 
-    }, [route])
+    // }, [route])
 
     return (
         <Global.Provider value={{
