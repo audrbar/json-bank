@@ -34,6 +34,18 @@ export const GlobalProvider = ({ children }) => {
     }
 
     useEffect(() => {
+        axios.get('http://localhost:3003/login', { withCredentials: true })
+            .then(res => {
+                console.log(res.data);
+                if (res.data.status === 'ok') {
+                    setRoute('accounts');
+                    setLogged(true);
+                    setAuthName(res.data.name);
+                }
+            })
+    }, []);
+
+    useEffect(() => {
 
         setLogged(null);
 

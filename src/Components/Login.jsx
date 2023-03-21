@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useContext } from "react";
 import axios from 'axios';
 import { Global } from "./GlobalContext";
 
@@ -10,16 +10,6 @@ function Login() {
     const [psw, setPsw] = useState('');
 
     const { setLogged, setAuthName, setRoute } = useContext(Global);
-
-    useEffect(() => {
-        axios.get('http://localhost:3003/login', { withCredentials: true })
-            .then(res => {
-                console.log(res.data);
-                if (res.data.status === 'ok') {
-                    setUserName(res.data.name);
-                }
-            })
-    }, []);
 
     const login = e => {
         e.preventDefault();
