@@ -25,7 +25,6 @@ export const GlobalProvider = ({ children }) => {
     }, [response, setMessage, setUpdate, setCreate]);
 
     const logOut = e => {
-        e.preventDefault();
         axios.post('http://localhost:3003/logout', {}, { withCredentials: true })
             .then(res => {
                 setLogged(false);
@@ -34,11 +33,11 @@ export const GlobalProvider = ({ children }) => {
             });
     }
 
-    // useEffect(() => {
+    useEffect(() => {
 
-    //     setLogged(null);
+        setLogged(null);
 
-    // }, [route])
+    }, [route])
 
     return (
         <Global.Provider value={{

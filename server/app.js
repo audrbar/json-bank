@@ -57,8 +57,7 @@ app.get('/login', (req, res) => {
     if (user) {
         res.json({
             status: 'ok',
-            name: user.name,
-            role: user.role
+            name: user.name
         });
     } else {
         res.json({
