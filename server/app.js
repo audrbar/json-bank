@@ -1,12 +1,19 @@
 const express = require('express');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
 const fs = require('fs');
 const { v4: uuidv4 } = require('uuid');
+const md5 = require('md5');
 
 const app = express();
 const port = 3003;
 
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:3000',
+    credentials: true
+}));
+
+app.use(cookieParser());
 
 app.use(
     express.urlencoded({
@@ -14,6 +21,50 @@ app.use(
     })
 );
 app.use(express.json());
+
+// Login
+app.post('/login', (req, res) => {
+    const users = JSON.parse(fs.readFileSync('./data/users.json', 'utf8'));
+    const name = req.body.name;
+    const psw = md5(req.body.psw);
+    const user = users.find(u => u.name === name && u.psw === psw);
+    if (user) {
+        const sessionId = md5(uuidv4()); // Turi buti normali kroptografija!!!
+        user.session = sessionId;
+        fs.writeFileSync('./data/users.json', JSON.stringify(users), 'utf8');
+        res.cookie('kijaSession', sessionId);
+        res.json({
+            status: 'ok',
+            name: user.name
+        });
+    } else {
+        res.json({
+            status: 'error',
+        });
+    }
+});
+
+app.post('/logout', (req, res) => {
+    res.clearCookie('kijaSession');
+    res.json({
+        status: 'logout',
+    });
+});
+
+app.get('/login', (req, res) => {
+    const users = JSON.parse(fs.readFileSync('./data/users.json', 'utf8'));
+    const user = req.cookies.kijaSession ? users.find(u => u.session === req.cookies.kijaSession) : null;
+    if (user) {
+        res.json({
+            status: 'ok',
+            name: user.name
+        });
+    } else {
+        res.json({
+            status: 'error',
+        });
+    }
+});
 
 // API
 app.get('/accounts', (req, res) => {
@@ -27,7 +78,7 @@ app.post('/accounts', (req, res) => {
     allData = JSON.parse(allData);
     const id = uuidv4();
     const data = {
-        name: req.body.name,
+        firstname: req.body.firstname,
         surname: req.body.surname,
         amount: req.body.amount,
         id
